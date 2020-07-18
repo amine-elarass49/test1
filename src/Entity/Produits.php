@@ -66,7 +66,7 @@ class Produits
     private $um_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=gammeProduit::class, inversedBy="produits")
+     * @ORM\ManyToOne(targetEntity=GammeProduit::class, inversedBy="produits")
      * @ORM\JoinColumn(name="gamme" ,nullable=false,referencedColumnName="gam_id")
      */
     private $gamme_id;
