@@ -26,6 +26,10 @@ class UniteMesure
 
     /**
      * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="um_id")
+     * @ORM\JoinTable(
+     * joinColumns={@ORM\JoinColumn(referencedColumnName="um_id")},
+     * inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="pr_id")}
+     * )
      */
     private $produits;
 

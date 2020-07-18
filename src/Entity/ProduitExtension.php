@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitExtensionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,9 +26,19 @@ class ProduitExtension
 
     /**
      * @ORM\ManyToOne(targetEntity=Produits::class, inversedBy="pr_ex_id")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="produit" ,nullable=false,referencedColumnName="pr_id")
      */
     private $produits;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Parametres::class, mappedBy="pr_ex_id")
+     */
+    private $parametres;
+
+    public function __construct()
+    {
+        $this->parametres = new ArrayCollection();
+    }
 
     public function getParExId(): ?int
     {
@@ -53,6 +65,37 @@ class ProduitExtension
     public function setProduits(?Produits $produits): self
     {
         $this->produits = $produits;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parametres[]
+     */
+    public function getParametres(): Collection
+    {
+        return $this->parametres;
+    }
+
+    public function addParametre(Parametres $parametre): self
+    {
+        if (!$this->parametres->contains($parametre)) {
+            $this->parametres[] = $parametre;
+            $parametre->setPrExId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParametre(Parametres $parametre): self
+    {
+        if ($this->parametres->contains($parametre)) {
+            $this->parametres->removeElement($parametre);
+            // set the owning side to null (unless already changed)
+            if ($parametre->getPrExId() === $this) {
+                $parametre->setPrExId(null);
+            }
+        }
 
         return $this;
     }

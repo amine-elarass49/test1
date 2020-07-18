@@ -27,6 +27,12 @@ class Parametres
      */
     private $par_valeur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ProduitExtension::class, inversedBy="parametres")
+     * @ORM\JoinColumn(name="pr_extension" ,nullable=false,referencedColumnName="pr_ex_id")
+     */
+    private $pr_ex_id;
+
     public function getParId(): ?int
     {
         return $this->par_id;
@@ -52,6 +58,18 @@ class Parametres
     public function setParValeur(string $par_valeur): self
     {
         $this->par_valeur = $par_valeur;
+
+        return $this;
+    }
+
+    public function getPrExId(): ?ProduitExtension
+    {
+        return $this->pr_ex_id;
+    }
+
+    public function setPrExId(?ProduitExtension $pr_ex_id): self
+    {
+        $this->pr_ex_id = $pr_ex_id;
 
         return $this;
     }

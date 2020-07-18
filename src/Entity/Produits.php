@@ -46,30 +46,34 @@ class Produits
 
     /**
      * @ORM\ManyToOne(targetEntity=EtatProduit::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="etat" , nullable=false,referencedColumnName="etat_id")
      */
     private $etat_id;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeProduit::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="type" ,nullable=false,referencedColumnName="type_id")
      */
     private $type_id;
 
     /**
      * @ORM\ManyToMany(targetEntity=UniteMesure::class, inversedBy="produits")
+     * @ORM\JoinTable(
+     * joinColumns={@ORM\JoinColumn(referencedColumnName="pr_id")},
+     * inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="um_id")}
+     * )
      */
     private $um_id;
 
     /**
      * @ORM\ManyToOne(targetEntity=gammeProduit::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="gamme" ,nullable=false,referencedColumnName="gam_id")
      */
     private $gamme_id;
 
     /**
      * @ORM\ManyToOne(targetEntity=MarqueProduit::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="marque" ,nullable=false,referencedColumnName="marque_id")
      */
     private $marque_id;
 
