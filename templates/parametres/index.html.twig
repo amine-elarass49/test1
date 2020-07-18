@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parametres index{% endblock %}
+
+{% block body %}
+    <h1>Parametres index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Par_id</th>
+                <th>Par_param</th>
+                <th>Par_valeur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parametre in parametres %}
+            <tr>
+                <td>{{ parametre.parId }}</td>
+                <td>{{ parametre.parParam }}</td>
+                <td>{{ parametre.parValeur }}</td>
+                <td>
+                    <a href="{{ path('parametres_show', {'par_id': parametre.par_id}) }}">show</a>
+                    <a href="{{ path('parametres_edit', {'par_id': parametre.par_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('parametres_new') }}">Create new</a>
+{% endblock %}

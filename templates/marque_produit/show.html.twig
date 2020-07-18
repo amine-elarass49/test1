@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MarqueProduit{% endblock %}
+
+{% block body %}
+    <h1>MarqueProduit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Marque_id</th>
+                <td>{{ marque_produit.marqueId }}</td>
+            </tr>
+            <tr>
+                <th>Marque_libelle</th>
+                <td>{{ marque_produit.marqueLibelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('marque_produit_index') }}">back to list</a>
+
+    <a href="{{ path('marque_produit_edit', {'marque_id': marque_produit.marque_id}) }}">edit</a>
+
+    {{ include('marque_produit/_delete_form.html.twig') }}
+{% endblock %}

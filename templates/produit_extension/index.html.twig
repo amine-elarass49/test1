@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitExtension index{% endblock %}
+
+{% block body %}
+    <h1>ProduitExtension index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pr_ex_id</th>
+                <th>Pr_ex_valeur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit_extension in produit_extensions %}
+            <tr>
+                <td>{{ produit_extension.prExId }}</td>
+                <td>{{ produit_extension.prExValeur }}</td>
+                <td>
+                    <a href="{{ path('produit_extension_show', {'pr_ex_id': produit_extension.pr_ex_id}) }}">show</a>
+                    <a href="{{ path('produit_extension_edit', {'pr_ex_id': produit_extension.pr_ex_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_extension_new') }}">Create new</a>
+{% endblock %}

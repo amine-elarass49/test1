@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitExtension{% endblock %}
+
+{% block body %}
+    <h1>ProduitExtension</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Pr_ex_id</th>
+                <td>{{ produit_extension.prExId }}</td>
+            </tr>
+            <tr>
+                <th>Pr_ex_valeur</th>
+                <td>{{ produit_extension.prExValeur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_extension_index') }}">back to list</a>
+
+    <a href="{{ path('produit_extension_edit', {'pr_ex_id': produit_extension.pr_ex_id}) }}">edit</a>
+
+    {{ include('produit_extension/_delete_form.html.twig') }}
+{% endblock %}

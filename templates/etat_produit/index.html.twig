@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EtatProduit index{% endblock %}
+
+{% block body %}
+    <h1>EtatProduit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Etat_id</th>
+                <th>Etat_libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etat_produit in etat_produits %}
+            <tr>
+                <td>{{ etat_produit.etatId }}</td>
+                <td>{{ etat_produit.etatLibelle }}</td>
+                <td>
+                    <a href="{{ path('etat_produit_show', {'etat_id': etat_produit.etat_id}) }}">show</a>
+                    <a href="{{ path('etat_produit_edit', {'etat_id': etat_produit.etat_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('etat_produit_new') }}">Create new</a>
+{% endblock %}

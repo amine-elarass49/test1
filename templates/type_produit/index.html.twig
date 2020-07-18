@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeProduit index{% endblock %}
+
+{% block body %}
+    <h1>TypeProduit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type_id</th>
+                <th>Type_libelle</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_produit in type_produits %}
+            <tr>
+                <td>{{ type_produit.typeId }}</td>
+                <td>{{ type_produit.typeLibelle }}</td>
+                <td>{{ type_produit.createdAt ? type_produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ type_produit.updatedAt ? type_produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('type_produit_show', {'type_id': type_produit.type_id}) }}">show</a>
+                    <a href="{{ path('type_produit_edit', {'type_id': type_produit.type_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_produit_new') }}">Create new</a>
+{% endblock %}

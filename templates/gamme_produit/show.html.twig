@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GammeProduit{% endblock %}
+
+{% block body %}
+    <h1>GammeProduit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Gam_id</th>
+                <td>{{ gamme_produit.gamId }}</td>
+            </tr>
+            <tr>
+                <th>Gam_libelle</th>
+                <td>{{ gamme_produit.gamLibelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gamme_produit_index') }}">back to list</a>
+
+    <a href="{{ path('gamme_produit_edit', {'gam_id': gamme_produit.gam_id}) }}">edit</a>
+
+    {{ include('gamme_produit/_delete_form.html.twig') }}
+{% endblock %}

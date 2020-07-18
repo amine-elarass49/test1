@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GammeProduit index{% endblock %}
+
+{% block body %}
+    <h1>GammeProduit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Gam_id</th>
+                <th>Gam_libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gamme_produit in gamme_produits %}
+            <tr>
+                <td>{{ gamme_produit.gamId }}</td>
+                <td>{{ gamme_produit.gamLibelle }}</td>
+                <td>
+                    <a href="{{ path('gamme_produit_show', {'gam_id': gamme_produit.gam_id}) }}">show</a>
+                    <a href="{{ path('gamme_produit_edit', {'gam_id': gamme_produit.gam_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('gamme_produit_new') }}">Create new</a>
+{% endblock %}
